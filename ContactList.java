@@ -11,14 +11,24 @@ public class ContactList {
 		String name = null;
 		String num = null;
 		String address = null;
+		String email = null;
 		String desc = null;
-		public Contact(String n, String nu, String add, String d){
+		public Contact(String n, String nu, String add, String d, String e){
 			if(!n.equals(null)) {
 				name = n;
 				num = nu;
 				address = add;
 				desc = d;	
+				email = e;
 			}
+		}
+		
+		public void setEmail(String e) {
+			email = e;
+		}
+		
+		public String getEmail() {
+			return email;
 		}
 		
 		public void setName(String n) {
@@ -49,20 +59,29 @@ public class ContactList {
 	
 	public ArrayList<Contact> c = new ArrayList<>();
 	
-	public void add(String name, String num, String add, String desc) {
+	public void add(String name, String num, String add, String desc, String email) {
+		Contact con = new Contact(name, num, add, desc, email);
+		int place = 0;
+		for (int i = 0; i < c.size(); i++) {
+			if(c.get(i).name.compareTo(name) < 0) {
+				place = i;
+			}
+		}
+		
+		c.add(place, con);
 		
 	}
 	
-	public void delete() {
-		
+	public void delete(int i) {
+		c.remove(i);
 	}
 	
-	public void sort() {
-		
-	}
-	
-	public void edit() {
-		
+	public void edit(String name, String num, String add, String desc, String email, Contact con) {
+		con.setAdd(add);
+		con.setName(name);
+		con.setDesc(desc);
+		con.setEmail(email);
+		con.setNum(num);
 	}
 	
 	
